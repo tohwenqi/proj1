@@ -1,2 +1,14 @@
 <td><%= link_to trainer.name, trainer %></td>
 <td><%= link_to trainer.email, trainer %></td>
+<% trainer.pokemons.each do |pokemon| %>
+	<td>
+	  <% if pokemon.ndex %>
+	    <%= image_tag("pokemon/#{pokemon.ndex}.png", alt: "pokemon") %> <br>
+	  <% end %>
+	<%= pokemon.name %> <br>
+	level: <%= pokemon.level %> <br>
+	health: <%= pokemon.health %> <br>
+	ndex: <%= pokemon.ndex %> <br>
+  	<%= button_to "Damage!", damage_path(id: pokemon), :class => "button small", :method => :patch %>
+	</td>
+<% end %>
