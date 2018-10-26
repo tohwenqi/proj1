@@ -17,6 +17,17 @@ class PokemonsController < ApplicationController
 		redirect_to '/trainers'
 	end
 
+	def heal
+		@pokemon = Pokemon.find(params[:id])
+		newHealth = @pokemon.health + 10
+		if newHealth < 100
+			@pokemon.update_attribute(:health, newHealth)
+		else
+			@pokemon.update_attribute(:health, 100)
+		end
+		redirect_to '/trainers'
+	end
+
 	def new
 		@pokemon = Pokemon.new
 	end
